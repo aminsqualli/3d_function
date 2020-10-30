@@ -1,7 +1,6 @@
 # 3d_function
 Outil de simulation de fonction 3D
 
-Bonjour Monsieur, 
 Voici le projet demandé dans le cadre du cours de programmation.
 
 J'y ai implémenté plusieurs outils :
@@ -20,6 +19,3 @@ J'y ai implémenté plusieurs outils :
  semble pas apparaître en choisissant l'intervalle x∈[-10;10], y∈[-10;10].
  
  Ce projet est constitué d'un document html, lié à un document javascript.
- 
- Cordialement, 
- Amin Squalli
