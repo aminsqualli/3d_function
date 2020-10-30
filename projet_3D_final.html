@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracé d'une fonction 3D</title>
+</head>
+<body style="background-color:rgb(113, 92, 80)">
+    <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-size:xx-large; text-align:center; color:rgb(97, 189, 148);"><b>Outil de simulation de fonctions 3D</b></p>
+    <p>
+    <style type="text/css">
+        canvas { border: 5px solid rgb(97, 189, 148); display: block; padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; background-color: white;}
+    </style>
+    <canvas id="projet"></canvas>
+    </p>
+    <div>
+        <p style="font-family:Arial; font-size:large; text-align:center">
+            <input type="submit" value="Exemple 1" onClick="changeFunction1();" style="width: 110px;">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <input type="submit" value="Exemple 2" onClick="changeFunction2();" style="width: 110px;">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <input type="submit" value="Exemple 3" onClick="changeFunction3();" style="width: 110px;">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <input type="submit" value="Exemple 4" onClick="changeFunction4();" style="width: 110px;">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <input type="submit" value="Exemple 5" onClick="changeFunction5();" style="width: 110px;">
+        </p>
+        <p style="font-family:Arial; font-size:large; text-align:center">
+            <label for="function" style="color:rgb(97, 189, 148);">Fonction :</label>
+            <input type="text" id="Fonction" size="90" placeholder="Écrire en JavaScript f(x,y)"/>
+            <input type="submit" value="Valider" onClick="changeFunction();">
+        </p>
+        <p style="font-family:Arial; font-size:large; text-align:center">
+            <label for="limits" style="color:rgb(97, 189, 148);">Limites : </label>
+            <input type="text" id="xMin" size="21" placeholder="xMin (= -10)"/>
+            <input type="text" id="xMax" size="21" placeholder="xMax (= 10)"/>
+            <input type="text" id="yMin" size="21" placeholder="yMin (= -10)"/>
+            <input type="text" id="yMax" size="22" placeholder="yMax (= 10)"/>
+            <input type="submit" value="Valider" onClick="changeInterval();">
+        </p>
+        <p style="font-family:Arial; font-size:large; text-align:center">
+            <label for="color_selection" style="color:rgb(97, 189, 148);">Couleur :</label>
+            <select name="color" id="color-select" onchange="changeColor(this.value)" style="width: 110px;">
+                <option value="b">Bleu</option>
+                <option value="o">Orange</option>
+                <option value="r">Rose</option>
+                <option value="m">Mauve</option>
+                <option value="e">Emeraude</option>
+                <option value="v">Vert</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <label for="style" style="color:rgb(97, 189, 148);">Type de tracé :</label>
+            <select name="style" id="stylepg" onchange="changeStyle(this.value)" style="width: 110px;">
+                <option value="p">Pixels</option>
+                <option value="g">Grille</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <label for="axis" style="color:rgb(97, 189, 148);">Axes :</label>
+            <select name="axis" id="axisyn" onchange="changeAxis(this.value)" style="width: 110px;">
+                <option value="n">Non</option>
+                <option value="o">Oui</option>
+            </select>
+        </p>
+    </div>
+</body>
+<script src="code_final.js"></script>
+</html>
