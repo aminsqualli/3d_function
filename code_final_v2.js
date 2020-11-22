@@ -196,8 +196,8 @@ function handleMouseMove(event) {
     } else {mouseY = stockY}	
 
 	if(drag === true) {
-		angles.phi += -(mouseY - stockY)*0.02;
-		angles.theta += (mouseX - stockX)*0.02;
+		angles.phi += -(mouseY - stockY)*0.01;
+		angles.theta += (mouseX - stockX)*0.01;
 		draw();
 	}
 };
