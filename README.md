@@ -18,4 +18,4 @@ J'y ai implémenté plusieurs outils :
  de certains points, ce qui s'avérait problématique car leur position est vitale pour tracer correctement et l'oubli provoquait des décalages. Ce problème ne 
  semble pas apparaître en choisissant l'intervalle x∈[-10;10], y∈[-10;10].
  
- Ce projet est constitué d'un document html, lié à un document javascript.
+ Ce projet est constitué d'un document html, lié à 3 documents javascript.
