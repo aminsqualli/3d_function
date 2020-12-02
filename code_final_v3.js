@@ -109,32 +109,8 @@ function draw() {
     rotationX(angles.phi, pixels);	
     rotationY(angles.theta, pixels);
 
-    //Tracer point par point
-    if (graphics.isAxis==="o"){
-        axis =[{x:300,y:0,z:0}, {x:0,y:300,z:0}, {x:0,y:0,z:300}];
-
-        rotationX(angles.phi, axis);	
-        rotationY(angles.theta, axis);
-
-        ctx.save();
-        ctx.translate(canvas.width/2, canvas.height/2);
-        for (var i=0; i < 3; i++) {
-            ctx.beginPath();
-            ctx.strokeStyle=['red','blue','green'][i];
-            ctx.moveTo(0,0);
-            ctx.lineTo(axis[i].x*graphics.zoom,axis[i].y*graphics.zoom);
-            ctx.fillText('x',5+canvas.height/2,canvas.width-20);
-            ctx.stroke();   
-        };
-        ctx.font = "15px Arial";
-        ctx.fillStyle = "red";
-        ctx.fillText("Axe X", canvas.width/2-70, canvas.height/2-60);
-        ctx.fillStyle = "blue";
-        ctx.fillText("Axe Y", canvas.width/2-70, canvas.height/2-45);
-        ctx.fillStyle = "green";
-        ctx.fillText("Axe Z", canvas.width/2-70, canvas.height/2-30);
-        ctx.restore();
-    };
+    //Axes
+    if (graphics.isAxis==="o"){strokeAxis()};
 
     ctx.save();
     ctx.translate(canvas.width/2, canvas.height/2);
@@ -210,3 +186,29 @@ function rotationY(theta, pixelsTrigo){
         pixel.z = -x*sin + z*cos
     }
 };
+
+function strokeAxis(){
+    axis =[{x:300,y:0,z:0}, {x:0,y:300,z:0}, {x:0,y:0,z:300}];
+
+    rotationX(angles.phi, axis);	
+    rotationY(angles.theta, axis);
+
+    ctx.save();
+    ctx.translate(canvas.width/2, canvas.height/2);
+    for (var i=0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.strokeStyle=['red','blue','green'][i];
+        ctx.moveTo(0,0);
+        ctx.lineTo(axis[i].x*graphics.zoom,axis[i].y*graphics.zoom);
+        ctx.fillText('x',5+canvas.height/2,canvas.width-20);
+        ctx.stroke();   
+    };
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("Axe X", canvas.width/2-70, canvas.height/2-60);
+    ctx.fillStyle = "blue";
+    ctx.fillText("Axe Y", canvas.width/2-70, canvas.height/2-45);
+    ctx.fillStyle = "green";
+    ctx.fillText("Axe Z", canvas.width/2-70, canvas.height/2-30);
+    ctx.restore();
+}
