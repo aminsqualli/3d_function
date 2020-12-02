@@ -84,6 +84,7 @@ function colorDef(col1,col2){
     if (graphics.color === "m") {codeCol='rgb(' + col2 + ',' + 0 + ',' + col1 + ')'}; //mauve
     if (graphics.color === "b") {codeCol='rgb(' + 0 + ',' + col2 + ',' + col1 + ')'}; //bleu
     if (graphics.color === "e") {codeCol='rgb(' + 0 + ',' + col1 + ',' + col2 + ')'}; //emeraude
+    
     if (graphics.style==="p"){
         ctx.fillStyle=codeCol;
     }
