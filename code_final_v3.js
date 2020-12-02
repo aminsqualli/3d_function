@@ -76,14 +76,16 @@ var axis = [];
 var xlong;
 var ylong;
 
-function colorDef(col1,col2){
+function colorDef(num){
+    var level1 = 255-1.5*colorLevel(pixels[num].z2);
+    var level2 = 255-2.5*colorLevel(pixels[num].z2);
     var codeCol;
-    if (graphics.color === "v") {codeCol='rgb(' + col2 + ',' + col1 + ',' + 0 + ')'}; //vert
-    if (graphics.color === "o") {codeCol='rgb(' + col1 + ',' + col2 + ',' + 0 + ')'}; //orange
-    if (graphics.color === "r") {codeCol='rgb(' + col1 + ',' + 0 + ',' + col2 + ')'}; //rose
-    if (graphics.color === "m") {codeCol='rgb(' + col2 + ',' + 0 + ',' + col1 + ')'}; //mauve
-    if (graphics.color === "b") {codeCol='rgb(' + 0 + ',' + col2 + ',' + col1 + ')'}; //bleu
-    if (graphics.color === "e") {codeCol='rgb(' + 0 + ',' + col1 + ',' + col2 + ')'}; //emeraude
+    if (graphics.color === "v") {codeCol='rgb(' + level2 + ',' + level1 + ',' + 0 + ')'}; //vert
+    if (graphics.color === "o") {codeCol='rgb(' + level1 + ',' + level2 + ',' + 0 + ')'}; //orange
+    if (graphics.color === "r") {codeCol='rgb(' + level1 + ',' + 0 + ',' + level2 + ')'}; //rose
+    if (graphics.color === "m") {codeCol='rgb(' + level2 + ',' + 0 + ',' + level1 + ')'}; //mauve
+    if (graphics.color === "b") {codeCol='rgb(' + 0 + ',' + level2 + ',' + level1 + ')'}; //bleu
+    if (graphics.color === "e") {codeCol='rgb(' + 0 + ',' + level1 + ',' + level2 + ')'}; //emeraude
     
     if (graphics.style==="p"){
         ctx.fillStyle=codeCol;
@@ -92,6 +94,14 @@ function colorDef(col1,col2){
         ctx.strokeStyle=codeCol;
     }
 };
+
+function halfGrid(a,b){
+    ctx.beginPath();
+    colorDef(a);
+    ctx.moveTo(pixels[a].x*graphics.zoom,pixels[a].y*graphics.zoom);
+    ctx.lineTo(pixels[b].x*graphics.zoom,pixels[b].y*graphics.zoom);
+    ctx.stroke();
+}
 
 //Définir fonction de dessin
 function draw() {
@@ -122,9 +132,7 @@ function draw() {
             return pixel1.z-pixel2.z;
         }); 
         for (var i=0; i < pixels.length; i++) {
-            var level1 = 255-1.5*colorLevel(pixels[i].z2);
-            var level2 = 255-2.5*colorLevel(pixels[i].z2);
-            colorDef(level1,level2);
+            colorDef(i);
             ctx.fillRect(pixels[i].x*graphics.zoom,pixels[i].y*graphics.zoom,graphics.pixPrecision,graphics.pixPrecision)
         }
     }
@@ -134,29 +142,16 @@ function draw() {
        for (var x=0; x<xlong; x++){
             for (var y=0; y<ylong; y++){
                 if ((x*ylong+y+1)%ylong!==0){
-                    ctx.beginPath();
-                    var level1 = 255-1.5*colorLevel(pixels[x*ylong+y].z2);
-                    var level2 = 255-2.5*colorLevel(pixels[x*ylong+y].z2);
-                    colorDef(level1,level2);
-                    ctx.moveTo(pixels[x*ylong+y].x*graphics.zoom,pixels[x*ylong+y].y*graphics.zoom);
-                    ctx.lineTo(pixels[x*ylong+y+1].x*graphics.zoom,pixels[x*ylong+y+1].y*graphics.zoom);
-                    ctx.stroke();
+                    halfGrid(x*ylong+y,x*ylong+y+1)
                 }
             }
         };
 
         for (var y=0; y<ylong; y++){
             for (var x=0; x<xlong-1; x++){
-                    ctx.beginPath();
-                    level1 = 255-1.5*colorLevel(pixels[y+x*ylong].z2);
-                    var level2 = 255-2.5*colorLevel(pixels[y+x*ylong].z2);
-                    colorDef(level1,level2);
-                    ctx.moveTo(pixels[y+x*ylong].x*graphics.zoom,pixels[y+x*ylong].y*graphics.zoom);
-                    ctx.lineTo(pixels[(x+1)*ylong+y].x*graphics.zoom,pixels[y+(x+1)*ylong].y*graphics.zoom);
-                    ctx.stroke();
+                halfGrid(y+x*ylong,y+(x+1)*ylong);
             }
         };
-
     }
     ctx.restore();
 }
