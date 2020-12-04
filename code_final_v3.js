@@ -117,8 +117,8 @@ function draw() {
     simuLimits = findMinMax(pixels);
 
     //Appliquer les matrices de rotation
-    rotationX(angles.phi, pixels);	
-    rotationY(angles.theta, pixels);
+    rotationAxis(angles.phi, pixels, "X");
+    rotationAxis(angles.theta, pixels, "Y");
 
     //Axes
     if (graphics.isAxis==="o"){strokeAxis()};
@@ -157,37 +157,33 @@ function draw() {
 }
 
 //Définir les fonctions trigo
-function rotationX(phi, pixelsTrigo){
-    var cos=Math.cos(phi);
-    var sin=Math.sin(phi);
-
-    for (var i=0; i<pixelsTrigo.length; i++){
-        var pixel=pixelsTrigo[i];
-        var y = pixel.y;
-        var z = pixel.z;
-        pixel.y = y*cos - z*sin;
-        pixel.z = y*sin + z*cos
-    }
-};
-
-function rotationY(theta, pixelsTrigo){
-    var cos=Math.cos(theta);
-    var sin=Math.sin(theta);
+function rotationAxis(angle, pixelsTrigo, axis){
+    var cos=Math.cos(angle);
+    var sin=Math.sin(angle);
 
     for (var i=0; i<pixelsTrigo.length; i++){
         var pixel=pixelsTrigo[i];
         var x = pixel.x;
+        var y = pixel.y
         var z = pixel.z;
-        pixel.x = x*cos + z*sin;
-        pixel.z = -x*sin + z*cos
+
+        if(axis === "X"){
+            pixel.y = y*cos - z*sin;
+            pixel.z = y*sin + z*cos
+        }
+
+        if(axis === "Y"){
+            pixel.x = x*cos + z*sin;
+            pixel.z = -x*sin + z*cos
+        }
     }
-};
+}
 
 function strokeAxis(){
     axis =[{x:300,y:0,z:0}, {x:0,y:300,z:0}, {x:0,y:0,z:300}];
 
-    rotationX(angles.phi, axis);	
-    rotationY(angles.theta, axis);
+	rotationAxis(angles.phi, axis, "X");
+    rotationAxis(angles.theta, axis, "Y");
 
     ctx.save();
     ctx.translate(canvas.width/2, canvas.height/2);
